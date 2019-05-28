@@ -1,11 +1,14 @@
 import express from 'express';
+import config from './config';
+import mongoose from 'mongoose';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.get('*', (request,response) => {
+mongoose.connect(config.mongoURI, { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true)
+
+app.get('*', (request, response) => {
   response.send('hello world');
-})
+});
 
-
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}.`))
+app.listen(config.port, () => console.log(`Server is running on port ${config.port}.`));
