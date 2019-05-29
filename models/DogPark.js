@@ -6,7 +6,7 @@ const dogParkSchema = new Schema({
   city: { type: String, required: true },
   zipCode: {type: Number, required: true},
   hours: Object,
-  numberOfDogsInPark: { type: Number, default: 0 },
+  currentDogCount: { type: Number, default: 0 },
   dateCreated: { type: Date, default: Date.now },
   lastUpdated: { type: Date, default: Date.now },
   sessions: {
@@ -19,7 +19,7 @@ const dogParkSchema = new Schema({
 
 dogParkSchema.methods.getCurrentNumOfDogs = function() {
   this.calculateSessions();
-  return this.numberOfDogsInPark;
+  return this.currentDogCount;
 };
 
 dogParkSchema.methods.addSession = function(sessionType, incomingDogsCount) {
@@ -39,7 +39,7 @@ dogParkSchema.methods.calculateSessions = function() {
         : (numberOfDogs += sessions[session]);
     });
   });
-  this.numberOfDogsInPark = numberOfDogs;
+  this.currentDogCount = numberOfDogs;
 };
 
 const DogPark = mongoose.model('DogPark', dogParkSchema);
