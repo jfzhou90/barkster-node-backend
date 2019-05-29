@@ -25,7 +25,7 @@ dogParkSchema.methods.getCurrentNumOfDogs = function() {
 dogParkSchema.methods.addSession = function(sessionType, incomingDogsCount) {
   if (!sessionType || !this.sessions[sessionType]) return;
 
-  this.sessions[sessionType][Date.now()] = incomingDogsCount;
+  this.sessions[sessionType][Date.now()] = parseInt(incomingDogsCount);
   return this;
 };
 
