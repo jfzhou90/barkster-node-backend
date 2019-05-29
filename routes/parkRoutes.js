@@ -16,13 +16,13 @@ router.post('/new', (request, response) => {
   response.send(dogPark);
 });
 
-router.get('/:id', (request,response) => {
-  DogPark.findById(request.params.id, function(error,dogPark) {
-    if(error) response.status(500).send(error);
-    dogPark.calculateSessions();
-    dogPark.save();
+router.get('/:id', (request, response) => {
+  DogPark.findById(request.params.id, function(error, dogPark) {
+    if (error) return response.status(500).send(error);
+    if (!dogPark) return response.status(404).send({Error:"Not Found"});
+    dogPark.calculateSessions().save();
     response.send(dogPark);
-  })
-})
+  });
+});
 
 export default router;

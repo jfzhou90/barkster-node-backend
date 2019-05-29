@@ -40,6 +40,8 @@ dogParkSchema.methods.calculateSessions = function() {
     });
   });
   this.currentDogCount = numberOfDogs;
+  this.lastUpdated = Date.now();
+  return this;
 };
 
 const DogPark = mongoose.model('DogPark', dogParkSchema);
