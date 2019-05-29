@@ -8,9 +8,10 @@ describe('Dog Park Model', () => {
     mongoose.connect(config.testMongoURI, { useNewUrlParser: true });
     mongoose.set('useCreateIndex', true);
     park1 = new DogPark({
-      name: 'Park1',
+      parkName: 'Park1',
       address: 'Park1 Address',
       city: 'Park1 City',
+      zipCode: '12345',
       sessions: { '1800000': {[Date.now()-1800000]:2} },
     });
     park1.save(done);
@@ -22,12 +23,12 @@ describe('Dog Park Model', () => {
 
   describe('creating new dog park', () => {
     it('create dog park successfully', done => {
-      expect(park1.name).toBe('Park1');
+      expect(park1.parkName).toBe('Park1');
       done();
     });
 
     it('unable to create duplicate dog park', done => {
-      let park2 = DogPark({ name: 'Park1', address: 'Park1 Address', city: 'Park1 City' });
+      let park2 = DogPark({ parkName: 'Park1', address: 'Park1 Address', city: 'Park1 City' });
       park2.save(err => {
         if (err) {
           return done();

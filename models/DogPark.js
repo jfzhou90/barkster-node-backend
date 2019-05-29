@@ -1,9 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
 const dogParkSchema = new Schema({
-  name: { type: String, unique: true, required: true },
+  parkName: { type: String, unique: true, required: true },
   address: { type: String, unique: true, required: true },
   city: { type: String, required: true },
+  zipCode: {type: Number, required: true},
   hours: Object,
   numberOfDogsInPark: { type: Number, default: 0 },
   dateCreated: { type: Date, default: Date.now },
