@@ -18,7 +18,7 @@ const dogParkSchema = new Schema(
       },
     },
   },
-  { strict: false, timestamps: { createdAt: 'created_at' } }
+  { timestamps: { createdAt: 'created_at' } }
 );
 
 dogParkSchema.methods.getCurrentNumOfDogs = function() {
