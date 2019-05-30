@@ -40,7 +40,7 @@ dogParkSchema.methods.calculateSessions = function() {
 
     Object.keys(sessions).forEach(session => {
       Date.now() - session >= duration
-        ? delete sessions[session]
+        ? (this.set(`sessions.${duration}.${session}`, undefined))
         : (numberOfDogs += sessions[session]);
     });
   });
