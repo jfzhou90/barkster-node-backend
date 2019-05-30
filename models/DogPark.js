@@ -18,7 +18,7 @@ const dogParkSchema = new Schema(
       },
     },
   },
-  { timestamps: { createdAt: 'created_at' } }
+  { timestamps: true }
 );
 
 dogParkSchema.methods.getCurrentNumOfDogs = function() {
@@ -45,7 +45,6 @@ dogParkSchema.methods.calculateSessions = function() {
     });
   });
   this.currentDogCount = numberOfDogs;
-  this.lastUpdated = Date.now();
   return this;
 };
 
